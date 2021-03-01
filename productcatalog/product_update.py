@@ -34,9 +34,6 @@ class ProductUpdate(DataObject):
     def redis_session(self):
         self.redisSession = [redis.Redis(host='localhost', port=6379, db=0)]
 
-    def serialize(self):
-        super().serialize()
-
     def validate(self):
         """
         validate different parameters to ensure that the data in the DataObject

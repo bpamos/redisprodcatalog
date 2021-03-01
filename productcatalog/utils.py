@@ -15,7 +15,3 @@ def to_type(a: Any, data_type):
     :returns: None or data_type(a)
     """
     return None if a is None else data_type(a)
-
-def redis_session(host='localhost', port=6379, db=0):
-    print('hi')
-    return redis.Redis(host=host, port=port, db=db)

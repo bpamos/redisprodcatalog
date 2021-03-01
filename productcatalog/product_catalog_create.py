@@ -1,21 +1,21 @@
-from productcatalog.calculable_object import *
-from .imports import *
+from productcatalog.redis_object import *
+#from .imports import *
 
 
-class ProductCatalogCreate(CalculableObject):
+class ProductCatalogCreate(RedisObject):
 
     def __init__(self, data=None):
         """
-        DirectionalSurvey object with a wells directional survey info
+        Product Catalog Create
         Attributes:
-        directional_survey_points (Dataclass Object) DataObject object
+        Product_create (Dataclass Object) DataObject object
         """
 
         self.data = data
         self.product_obj = ProductCreate(**self.data)
 
     def product_id_gen(self):
-        "Generate the product Id"
+        "Generate the product Id, it is a incremental value"
         redis = self.product_obj.redisSession[0]
         product_id_incr = redis.incr('product_id_incr', 1)
         product_id = f"product:{product_id_incr}"
@@ -24,18 +24,17 @@ class ProductCatalogCreate(CalculableObject):
 
     def product_hash(self):
         """
-        Calculate TVD, n_s_deviation, e_w_deviation, and dls values along the wellbore
-        using md, inc, and azim arrays
+        Create product hash in redis
+        Fill in the hash with the parameter values
+        Since redis does not have nested data strucutures you must create a new index for images
+        because images is mulitple items in a list.
+        Create a list and Rpush the images into the list, this will ensure the the 1st image
+        in the list is the first image, cap the list at 4 images.
         :parameter:
         -------
         None
         :return:
         -------
-        calculated np.array values
-        tvd: np.array
-        dls: np.array
-        e_w_deviation: np.array
-        n_s_deviation: np.array
         :examples:
         -------
         """
@@ -67,7 +66,9 @@ class ProductCatalogCreate(CalculableObject):
 
     def product_name_secondary_index(self):
         """"
-
+        Create Secondary Index in redis
+        Create a hash named 'product-name-index' then put the name of the product as the Key
+        and product Id as the value, so you can quickly access it by name and get the product Id
         """
         redis = self.product_obj.redisSession[0]
         product_id = self.product_obj.productId
@@ -77,9 +78,7 @@ class ProductCatalogCreate(CalculableObject):
 
     def category_set(self):
         """
-        You can get the ID from the product hash and create the cateogry hash
-        you will call the current main cat product id. Find out what it is, then create a unique ID for it.
-        Like, MEAT, and then update the set??? idk. ughh
+        Create category set in redis
         """
         redis = self.product_obj.redisSession[0]
 
@@ -90,6 +89,11 @@ class ProductCatalogCreate(CalculableObject):
         redis.sadd(category_id, product_id)
 
     def generate_product_catalog(self):
+        """
+        Run through product create methods
+
+        :return:
+        """
         self.product_id_gen()  # get generated product id
 
         self.product_hash()  # get product hash

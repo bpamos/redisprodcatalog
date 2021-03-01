@@ -1,13 +1,13 @@
-from productcatalog.calculable_object import *
+from productcatalog.redis_object import *
 
 
-class ProductCatalogSearch(CalculableObject):
+class ProductCatalogSearch(RedisObject):
 
     def __init__(self, data=None):
         """
-        DirectionalSurvey object with a wells directional survey info
+        Product Catalog Search
         Attributes:
-        directional_survey_points (Dataclass Object) DataObject object
+        ProductSearch (Dataclass Object) DataObject object
         """
 
         self.data = data
@@ -21,6 +21,17 @@ class ProductCatalogSearch(CalculableObject):
         redis = self.product_obj.redisSession[0]
         product_id = self.product_obj.productId
         return redis.hgetall(product_id)
+
+    def find_images_by_product_id(self):
+        """
+
+        :return:
+        """
+        redis = self.product_obj.redisSession[0]
+        product_id = self.product_obj.productId
+
+        image_id = f"{product_id}:images"
+        return redis.lrange(image_id,0,-1)
 
     def find_products_in_category(self):
         """
@@ -39,8 +50,6 @@ class ProductCatalogSearch(CalculableObject):
         """
         redis = self.product_obj.redisSession[0]
         name = self.product_obj.name
-
-        print(name)
 
         product_name_id = redis.hget('product-name-index', name)
         product_name_id = product_name_id.decode("utf-8")

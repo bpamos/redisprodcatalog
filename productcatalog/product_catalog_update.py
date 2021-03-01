@@ -1,13 +1,13 @@
-from productcatalog.calculable_object import *
+from productcatalog.redis_object import *
 
 
-class ProductCatalogUpdate(CalculableObject):
+class ProductCatalogUpdate(RedisObject):
 
     def __init__(self, data=None):
         """
-        DirectionalSurvey object with a wells directional survey info
+        Product Catalog Update
         Attributes:
-        directional_survey_points (Dataclass Object) DataObject object
+        ProductUpdate (Dataclass Object) DataObject object
         """
 
         self.data = data
@@ -16,18 +16,22 @@ class ProductCatalogUpdate(CalculableObject):
 
     def product_hash_update(self):
         """
-        Calculate TVD, n_s_deviation, e_w_deviation, and dls values along the wellbore
-        using md, inc, and azim arrays
+        Update the Product Hash in Redis, use the product id to find the product hash,
+        If any of the parameters are available update them.
+        Depending on the paramenter it is a simple update, or more involved due to other data structures
+        that the paramenter references.
+        If name is changed it will find the original name, remove it from the secondary index hash
+        and remove it from the products-names catch all set
+        Then it will update those two redis data structures with the new name
+        and then update the original hash
+
+        if it is images if will update the new images by left pushing the reverse of the list of images
+        into the the redis list, this is to maintain the first image as being the 'best image'
+        it will push out the original images capping the list at 4 images.
         :parameter:
         -------
-        None
         :return:
         -------
-        calculated np.array values
-        tvd: np.array
-        dls: np.array
-        e_w_deviation: np.array
-        n_s_deviation: np.array
         :examples:
         -------
         """
@@ -77,9 +81,9 @@ class ProductCatalogUpdate(CalculableObject):
 
     def category_update(self):
         """
-        You can get the ID from the product hash and create the cateogry hash
-        you will call the current main cat product id. Find out what it is, then create a unique ID for it.
-        Like, MEAT, and then update the set??? idk. ughh
+        Update Category Set in redis, find the category of the product id from the product hash
+        use that category to access the category set, remove the product id from the original category set
+        add the product id to the new category set
         """
         redis = self.product_obj.redisSession[0]
         product_id = self.product_obj.productId
@@ -105,18 +109,11 @@ class ProductCatalogUpdate(CalculableObject):
 
     def product_hash_delete(self):
         """
-        Calculate TVD, n_s_deviation, e_w_deviation, and dls values along the wellbore
-        using md, inc, and azim arrays
+        Delete Product Hash by product Id in redis
         :parameter:
         -------
-        None
         :return:
         -------
-        calculated np.array values
-        tvd: np.array
-        dls: np.array
-        e_w_deviation: np.array
-        n_s_deviation: np.array
         :examples:
         -------
         """
@@ -139,7 +136,7 @@ class ProductCatalogUpdate(CalculableObject):
 
     def images_list_delete(self):
         """
-
+        delete image list in redis
         :return:
         """
         redis = self.product_obj.redisSession[0]
@@ -152,9 +149,7 @@ class ProductCatalogUpdate(CalculableObject):
 
     def category_remove(self):
         """
-        You can get the ID from the product hash and create the cateogry hash
-        you will call the current main cat product id. Find out what it is, then create a unique ID for it.
-        Like, MEAT, and then update the set??? idk. ughh
+        Remove product id from category set in redis
         """
         redis = self.product_obj.redisSession[0]
         product_id = self.product_obj.productId
@@ -167,12 +162,22 @@ class ProductCatalogUpdate(CalculableObject):
         redis.srem(orig_cat_id, product_id)
 
     def update_product(self):
+        """
+        Run through product update methods
+
+        :return:
+        """
 
         self.product_hash_update()  # get product hash
 
         self.category_update() # get category set
 
     def delete_product(self):
+        """
+        Run through product delete methods
+
+        :return:
+        """
 
         self.category_remove()
         self.product_hash_delete()

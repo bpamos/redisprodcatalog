@@ -34,13 +34,9 @@ class ProductCreate(DataObject):
     def redis_session(self):
         self.redisSession = [redis.Redis(host='localhost', port=6379, db=0)]
 
-    def serialize(self):
-        super().serialize()
-
     def validate(self):
         """
-        validate different parameters to ensure that the data in the DataObject
-        will work with the directional survey functions
+        validate different parameters
         """
 
         #         def validate_productId(self):
@@ -67,7 +63,7 @@ class ProductCreate(DataObject):
                 raise TypeError(f"Validation Error: product name must be unique: {product_name}")
 
         # run validation functions
-        #         validate_productId(self)
+        # validate_productId(self)
         validate_product_name(self)
 
     def deserialize(self):
@@ -99,9 +95,6 @@ class ProductCreate(DataObject):
         if type is None pass,
         else if type given doesnt match dataclass type raise error
         """
-        #         import redis
-        #         redis = redis.Redis(host='localhost', port=6379, db=0)
-        #         print(redis)
         self.redis_session()
         self.validate()
         self.deserialize()
