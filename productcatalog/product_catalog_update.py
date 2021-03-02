@@ -92,14 +92,14 @@ class ProductCatalogUpdate(RedisObject):
         if category is not None:
 
             # get the original value of the category
-            orig_cat = redis.hget(product_id ,'main-category')
+            orig_cat = redis.hget(product_id ,'category')
             # remove it from the set, (must decode bytes to string)
             orig_cat = orig_cat.decode("utf-8")
             orig_cat_id = f"category:{orig_cat}"
             redis.srem(orig_cat_id, product_id)
 
             # update in the product hash
-            redis.hset(product_id ,'main-category' ,category)
+            redis.hset(product_id ,'category' ,category)
 
             # add it to the new set
             category_id = f"category:{category}"
@@ -155,7 +155,7 @@ class ProductCatalogUpdate(RedisObject):
         product_id = self.product_obj.productId
 
         # get the original value of the category
-        orig_cat = redis.hget(product_id ,'main-category')
+        orig_cat = redis.hget(product_id ,'category')
         # remove it from the set, (must decode bytes to string)
         orig_cat = orig_cat.decode("utf-8")
         orig_cat_id = f"category:{orig_cat}"

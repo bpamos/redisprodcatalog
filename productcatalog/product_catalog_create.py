@@ -54,7 +54,7 @@ class ProductCatalogCreate(RedisObject):
         redis.hset(product_id, 'vendor', vendor)
         redis.hset(product_id, 'price', price)
         redis.hset(product_id, 'currency', currency)
-        redis.hset(product_id, 'main-category', category)
+        redis.hset(product_id, 'category', category)
 
         # create a list of images, keep only 4 per product
         # first image in the list is the number 1 image
