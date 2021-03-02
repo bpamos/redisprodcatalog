@@ -1,4 +1,5 @@
 import redis
+import redisearch
 import os
 import abc, json, pathlib
 from abc import abstractmethod
