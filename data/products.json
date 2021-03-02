@@ -1,0 +1,173 @@
+[
+    {
+    "name": 'Doritos Nacho Cheese',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'HEB',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Doritos Spicy Nacho',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'HEB',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Doritos Salsa Verde',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Costco',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Doritos Flaming Hot Nacho Cheese',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Kroger',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Doritos Cool Ranch',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Doritos',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Doritos Nacho Cheese',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Costco',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Tostitos Hint of Lime',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Costco',
+    "price": 3.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Tostitos Scoops',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Kroger',
+    "price": 4.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Tostitos Original',
+    "description": 'Flavored Tortilla Chip',
+    "vendor": 'Kroger',
+    "price": 4.99,
+    "currency": 'dollars',
+    "category": 'Chip',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Cheetos XXtra Flaming Hot',
+    "description": 'Cheese puff snack',
+    "vendor": 'HEB',
+    "price": 2.99,
+    "currency": 'dollars',
+    "category": 'Cheese_Puff',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Cheetos Baked Crunchy',
+    "description": 'Cheese puff snack',
+    "vendor": 'HEB',
+    "price": 2.99,
+    "currency": 'dollars',
+    "category": 'Cheese_Puff',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Cheetos Original',
+    "description": 'Cheese puff snack',
+    "vendor": 'Kroger',
+    "price": 2.99,
+    "currency": 'dollars',
+    "category": 'Cheese_Puff',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Kale',
+    "description": 'Leafy Greens',
+    "vendor": 'HEB',
+    "price": 5.50,
+    "currency": 'dollars',
+    "category": 'Vegetable',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Iceburg Lettuce',
+    "description": 'Leafy Greens',
+    "vendor": 'Kroger',
+    "price": 1.50,
+    "currency": 'dollars',
+    "category": 'Vegetable',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Butter Lettuce',
+    "description": 'Leafy Greens',
+    "vendor": 'HEB',
+    "price": 3.50,
+    "currency": 'dollars',
+    "category": 'Vegetable',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Pork',
+    "description": 'The Meats',
+    "vendor": 'HEB',
+    "price": 10.50,
+    "currency": 'dollars',
+    "category": 'Meat',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Chicken',
+    "description": 'The Meats',
+    "vendor": 'HEB',
+    "price": 5.50,
+    "currency": 'dollars',
+    "category": 'Meat',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Beef',
+    "description": 'The Meats',
+    "vendor": 'HEB',
+    "price": 5.50,
+    "currency": 'dollars',
+    "category": 'Meat',
+    "images": [1,2,3,4,5,6,7,8]
+    },
+    {
+    "name": 'Tuna',
+    "description": 'Fishy',
+    "vendor": 'HEB',
+    "price": 5.50,
+    "currency": 'dollars',
+    "category": 'Fish',
+    "images": [1,2,3,4,5,6,7,8]
+    }
+]
