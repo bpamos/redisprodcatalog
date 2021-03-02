@@ -61,7 +61,7 @@ Prerequisites:
    redislabs/redisearch:2.0.2
 	```
 
-Install redisporductcatalog:
+Install redisproductcatalog:
 
     $ git clone https://github.com/bpamos/redisprodcatalog.git
     $ cd redisprodcatalog/
@@ -72,13 +72,9 @@ Install redisporductcatalog:
 
 
 ---
-
-1. Create (and activate) a new environment, named `redisproductcatalog` with Python 3.8+
-
-	- __Mac__: 
+- __Open a Docker Terminal and Run Redis Cli:__: 
 	```
-	conda create -n redisproductcatalog python=3.8
-	source activate redisproductcatalog
+	> redis-cli
+	> 127.0.0.1:6379> ping
+	PONG
 	```
-
-
